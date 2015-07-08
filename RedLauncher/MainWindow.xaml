@@ -1,0 +1,103 @@
+﻿<Window x:Class="RedLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:RedLauncher.Controls"
+        Title="MainWindow"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Icon="/RedLauncher;component/Resources/MapleLeaf.ico">
+    <Window.Resources>
+        <ImageBrush x:Key="PlayButton" ImageSource="/RedLauncher;component/Resources/button_play.png" />
+        <ImageBrush x:Key="ForumButton" ImageSource="/RedLauncher;component/Resources/button_forums.png" />
+        <ImageBrush x:Key="WebsiteButton" ImageSource="/RedLauncher;component/Resources/button_website.png" />
+        <ImageBrush x:Key="VoteButton" ImageSource="/RedLauncher;component/Resources/button_vote.png" />
+
+        <Style x:Key="CustomButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="PlayButtonStyle" BasedOn="{StaticResource CustomButtonStyle}" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource PlayButton}" />
+            <Setter Property="Height" Value="62" />
+            <Setter Property="Width" Value="85" />
+        </Style>
+
+        <Style x:Key="ForumButtonStyle" BasedOn="{StaticResource CustomButtonStyle}" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource ForumButton}" />
+            <Setter Property="Height" Value="27" />
+            <Setter Property="Width" Value="85" />
+        </Style>
+
+        <Style x:Key="WebsiteButtonStyle" BasedOn="{StaticResource CustomButtonStyle}" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource WebsiteButton}" />
+            <Setter Property="Height" Value="27" />
+            <Setter Property="Width" Value="85" />
+        </Style>
+
+        <Style x:Key="VoteButtonStyle" BasedOn="{StaticResource CustomButtonStyle}" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource VoteButton}" />
+            <Setter Property="Height" Value="48" />
+            <Setter Property="Width" Value="44" />
+        </Style>
+    </Window.Resources>
+    <c:CustomWindow>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Button Grid.Row="1" Style="{StaticResource VoteButtonStyle}" Margin="62,10,83,-10" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Style="{StaticResource WebsiteButtonStyle}" Margin="0,5,0,0" />
+                        <Button Grid.Row="1" Style="{StaticResource ForumButtonStyle}" Margin="0,0,0,6" />
+                    </Grid>
+
+                    <Button Grid.Column="1" Style="{StaticResource PlayButtonStyle}" />
+                </Grid>
+            </Grid>
+            <c:CustomProgressBar Grid.Row="1" Value="63" Text="Checking files... 63%" />
+        </Grid>
+    </c:CustomWindow>
+</Window>
